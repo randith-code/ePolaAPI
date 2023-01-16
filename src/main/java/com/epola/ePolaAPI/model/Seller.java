@@ -25,12 +25,4 @@ public class Seller {
     private Date signInDate = new Date(System.currentTimeMillis());
     private Contact contact;
     private Location location;
-    private ArrayList<Item> items;
-
-    public void setItems(Item i){
-        this.items.add(i);
-    }
-    public void setItemList(ArrayList<Item> itm){
-        this.items=itm;
-    }
 }

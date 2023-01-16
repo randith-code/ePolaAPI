@@ -7,21 +7,20 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-
-@Document("review")
-public class Review {
+@Document("trades")
+public class Trade {
     @Id
-    private String rid;
+    private String trdId;
     private String ownerId;
-    private String itemId;
-    private Date postedDate;
-    private int rating;
-    private String rName;
-    private String review;
+    private String bid;
+    private int amount;
+    private String date;
+    private Boolean isOwnerAccepted;
+    private Boolean active;
+    private Boolean isBuyerAcceptedCompletion;
+    private Boolean isSellerAcceptedCompletion;
 }

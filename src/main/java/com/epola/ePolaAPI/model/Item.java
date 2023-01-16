@@ -1,12 +1,12 @@
 package com.epola.ePolaAPI.model;
 
-import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -15,19 +15,13 @@ import java.util.Date;
 @Getter
 @Setter
 
+@Document("item")
 public class Item {
-
+    @Id
+    private String iid;
     private String iname;
+    private String ownerID;
     private int priceRate;
-    private Date postedDate;
+    private Date postedDate = new Date(System.currentTimeMillis());
     private String description;
-    private ArrayList<Review> reviews;
-
-    public void setReviews(Review review){
-        this.reviews.add(review);
-    }
-
-    public void setReviewList(ArrayList<Review> r){
-        this.reviews = r;
-    }
 }

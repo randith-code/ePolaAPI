@@ -24,5 +24,4 @@ public class Transport {
     private Date signInDate = new Date(System.currentTimeMillis());
     private Contact contact;
     private Location location;
-    private ArrayList<Vehicle> vehicles;
 }

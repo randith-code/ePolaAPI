@@ -12,6 +12,7 @@ import java.util.ArrayList;
 @Setter
 public class ItemRequest {
     private String iname;
+    private String ownerID;
     private int priceRate;
     private String description;
 }
