@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/ePolaAPI")
 public class TradeController {
 
     private final TradeRepository tradeRepository;
@@ -18,7 +19,10 @@ public class TradeController {
     public TradeController(TradeRepository tradeRepository) {
         this.tradeRepository = tradeRepository;
     }
-
+    @GetMapping("/trade")
+    public ResponseEntity<List<Trade>> getAllReviews(){
+        return ResponseEntity.ok(this.tradeRepository.findAll());
+    }
     @GetMapping("/trade/{bid}")
     public ResponseEntity<List<Trade>> getTradesByBuyerId(@PathVariable String bid){
         return ResponseEntity.ok(this.tradeRepository.findTradesByBid(bid));

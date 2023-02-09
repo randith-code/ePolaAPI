@@ -1,6 +1,5 @@
 package com.epola.ePolaAPI.controller;
 
-import com.epola.ePolaAPI.model.Item;
 import com.epola.ePolaAPI.model.Review;
 import com.epola.ePolaAPI.repository.ReviewRepository;
 import com.epola.ePolaAPI.resource.ReviewRequest;
@@ -12,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/ePolaAPI")
 public class ReviewController {
 
     private final ReviewRepository reviewRepository;
