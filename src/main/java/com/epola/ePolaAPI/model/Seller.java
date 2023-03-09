@@ -32,7 +32,7 @@ public class Seller implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends GrantedAuthority> getAuthorities() { //check if application doesn't work
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new Authority("ROLE_SELLER"));
         return roles;

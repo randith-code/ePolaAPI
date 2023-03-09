@@ -3,7 +3,9 @@ package com.epola.ePolaAPI.controller;
 import com.epola.ePolaAPI.exceptions.ResourceNotFoundException;
 import com.epola.ePolaAPI.model.Seller;
 import com.epola.ePolaAPI.repository.SellerRepository;
+import com.epola.ePolaAPI.resource.AuthenticationResponce;
 import com.epola.ePolaAPI.resource.SellerRequest;
+import com.epola.ePolaAPI.service.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +17,11 @@ import java.util.Optional;
 public class SellerController {
 
     private final SellerRepository sellerrepository;
+    private final AuthenticationService service;
 
-    public SellerController(SellerRepository sellerrepository) {
+    public SellerController(SellerRepository sellerrepository, AuthenticationService service) {
         this.sellerrepository = sellerrepository;
+        this.service = service;
     }
 
     @GetMapping("/seller")
@@ -25,15 +29,9 @@ public class SellerController {
         return ResponseEntity.ok(this.sellerrepository.findAll());
     }
 
-    @PostMapping("/seller")
-    public ResponseEntity<Seller> addSeller(@RequestBody SellerRequest sellerRequest){
-        Seller seller = new Seller();
-        seller.setUserName(sellerRequest.getUserName());
-        seller.setPassword(sellerRequest.getPassword());
-        seller.setContact(sellerRequest.getContact());
-        seller.setLocation(sellerRequest.getLocation());
-
-        return ResponseEntity.status(201).body(this.sellerrepository.save(seller));
+    @PostMapping("/auth/registerseller")
+    public ResponseEntity<AuthenticationResponce> registerSeller(@RequestBody SellerRequest sellerRequest){
+        return ResponseEntity.ok(service.registerSeller(sellerRequest, sellerrepository));
     }
 
     @GetMapping("/seller/{id}")
