@@ -22,7 +22,7 @@ public class SecurityConfig{
         http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/ePolaAPI/auth/**")
+                .requestMatchers("/ePolaAPI/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

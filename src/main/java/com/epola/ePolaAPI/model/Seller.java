@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
@@ -16,7 +18,7 @@ import java.util.*;
 @Getter
 @Setter
 
-@Document("sellers")
+@Document(collation = "sellers")
 public class Seller implements UserDetails {
 
     @Id
@@ -26,16 +28,14 @@ public class Seller implements UserDetails {
     private Date signInDate = new Date(System.currentTimeMillis());
     private Contact contact;
     private Location location;
-    private List<Authority> authorities = new ArrayList<>();
+    private Role role;
 
     public Seller(String username, String password, Set<GrantedAuthority> grantedAuthorities) {
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() { //check if application doesn't work
-        List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new Authority("ROLE_SELLER"));
-        return roles;
+       return List.of(new SimpleGrantedAuthority(role.name().toString()));
     }
 
     @Override

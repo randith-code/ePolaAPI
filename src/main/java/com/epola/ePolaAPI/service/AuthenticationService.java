@@ -1,6 +1,6 @@
 package com.epola.ePolaAPI.service;
 
-import com.epola.ePolaAPI.model.Authority;
+import com.epola.ePolaAPI.model.Role;
 import com.epola.ePolaAPI.model.Seller;
 import com.epola.ePolaAPI.repository.SellerRepository;
 import com.epola.ePolaAPI.resource.AuthRequest;
@@ -30,9 +30,7 @@ public class AuthenticationService {
         seller.setPassword(passwordEncoder.encode(sellerRequest.getPassword()));
         seller.setContact(sellerRequest.getContact());
         seller.setLocation(sellerRequest.getLocation());
-        List<Authority> roles = new ArrayList<>();
-        roles.add(new Authority("ROLE_SELLER"));
-        seller.setAuthorities(roles);
+        seller.setRole(Role.SELLER);
 
         repository.save(seller);
 
