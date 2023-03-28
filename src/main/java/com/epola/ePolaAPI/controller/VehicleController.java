@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/ePolaAPI")
 public class VehicleController {
 
     private final VehicleRepository vehicleRepository;
