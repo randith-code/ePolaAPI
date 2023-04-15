@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/ePolaAPI")
 public class BuyerController {
 
     private final BuyerRepository buyerrepository;
@@ -23,13 +24,15 @@ public class BuyerController {
         return ResponseEntity.ok(this.buyerrepository.findAll());
     }
 
-    @PostMapping("/buyer")
+    @PostMapping("/buyer/auth/register")
     public ResponseEntity<Buyer> addBuyer(@RequestBody BuyerRequest buyerrequest){
 
         Buyer buyer = new Buyer();
-        buyer.setUserName(buyerrequest.getUsername());
+        buyer.setUserName(buyerrequest.getUserName());
         buyer.setPassword(buyerrequest.getPassword());
         buyer.setEmail(buyerrequest.getEmail());
+        buyer.setPhone(buyerrequest.getPhone());
+        buyer.setRole(buyerrequest.getRole());
 
         return ResponseEntity.status(201).body(this.buyerrepository.save(buyer));
     }

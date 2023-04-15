@@ -16,4 +16,5 @@ public class TransportRequest {
     private String password;
     private Contact contact;
     private Location location;
+    private String role;
 }

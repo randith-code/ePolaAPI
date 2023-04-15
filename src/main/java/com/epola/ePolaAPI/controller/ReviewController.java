@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/ePolaAPI")
 public class ReviewController {
 
     private final ReviewRepository reviewRepository;

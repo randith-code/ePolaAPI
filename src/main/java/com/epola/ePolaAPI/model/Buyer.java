@@ -23,5 +23,7 @@ public class Buyer {
     private String userName;
     private String password;
     private String email;
+    private String phone;
     private Date SignInDate = new Date(System.currentTimeMillis());
+    private String role;
 }

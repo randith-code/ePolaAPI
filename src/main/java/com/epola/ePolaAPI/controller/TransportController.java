@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/ePolaAPI")
 public class TransportController {
     private final TransportRepository transportRepository;
 
@@ -32,6 +33,7 @@ public class TransportController {
         transport.setPassword(transportRequest.getPassword());
         transport.setContact(transportRequest.getContact());
         transport.setLocation(transportRequest.getLocation());
+        transport.setRole(transportRequest.getRole());
 
 
         return ResponseEntity.status(201).body(this.transportRepository.save(transport));

@@ -7,10 +7,12 @@ import com.epola.ePolaAPI.resource.SellerRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.KeyStore;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/ePolaAPI")
 public class SellerController {
 
     private final SellerRepository sellerrepository;
@@ -31,6 +33,7 @@ public class SellerController {
         seller.setPassword(sellerRequest.getPassword());
         seller.setContact(sellerRequest.getContact());
         seller.setLocation(sellerRequest.getLocation());
+        seller.setRole(sellerRequest.getRole());
 
         return ResponseEntity.status(201).body(this.sellerrepository.save(seller));
     }

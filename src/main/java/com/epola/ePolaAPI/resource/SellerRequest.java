@@ -17,4 +17,5 @@ public class SellerRequest {
     private String password;
     private Contact contact;
     private Location location;
+    private String role;
 }

@@ -25,4 +25,5 @@ public class Seller {
     private Date signInDate = new Date(System.currentTimeMillis());
     private Contact contact;
     private Location location;
+    private String role;
 }
