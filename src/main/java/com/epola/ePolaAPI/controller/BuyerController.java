@@ -2,7 +2,9 @@ package com.epola.ePolaAPI.controller;
 
 import com.epola.ePolaAPI.model.Buyer;
 import com.epola.ePolaAPI.repository.BuyerRepository;
+import com.epola.ePolaAPI.resource.AuthenticationResponse;
 import com.epola.ePolaAPI.resource.BuyerRequest;
+import com.epola.ePolaAPI.services.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,12 +13,15 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/ePolaAPI")
+
 public class BuyerController {
 
     private final BuyerRepository buyerrepository;
+    private final AuthenticationService service;
 
-    public BuyerController(BuyerRepository buyerrepository) {
+    public BuyerController(BuyerRepository buyerrepository, AuthenticationService service) {
         this.buyerrepository = buyerrepository;
+        this.service = service;
     }
 
     @GetMapping("/buyer")
@@ -24,15 +29,10 @@ public class BuyerController {
         return ResponseEntity.ok(this.buyerrepository.findAll());
     }
 
-    @PostMapping("/buyer")
-    public ResponseEntity<Buyer> addBuyer(@RequestBody BuyerRequest buyerrequest){
+    @PostMapping("/auth/buyer/register")
+    public ResponseEntity<AuthenticationResponse> addBuyer(@RequestBody BuyerRequest buyerrequest){
 
-        Buyer buyer = new Buyer();
-        buyer.setUserName(buyerrequest.getUsername());
-        buyer.setPassword(buyerrequest.getPassword());
-        buyer.setEmail(buyerrequest.getEmail());
-
-        return ResponseEntity.status(201).body(this.buyerrepository.save(buyer));
+        return ResponseEntity.ok(service.registerBuyer(buyerrequest));
     }
 
     @GetMapping("/buyer/{id}")

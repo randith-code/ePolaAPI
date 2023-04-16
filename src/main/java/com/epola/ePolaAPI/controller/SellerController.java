@@ -31,7 +31,7 @@ public class SellerController {
 
     @PostMapping("auth/seller/register")
     public ResponseEntity<AuthenticationResponse> addSeller(@RequestBody SellerRequest sellerRequest){
-        return  ResponseEntity.ok(service.register(sellerRequest));
+        return  ResponseEntity.ok(service.registerSeller(sellerRequest));
     }
 
     @GetMapping("/seller/{id}")
