@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/ePolaAPI")
+@CrossOrigin("http://localhost:3000")
 public class ItemController {
 
     private final ItemRepository itemRepository;

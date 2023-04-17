@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/ePolaAPI")
+@CrossOrigin("http://localhost:3000")
 public class VehicleController {
 
     private final VehicleRepository vehicleRepository;

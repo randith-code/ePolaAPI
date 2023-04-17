@@ -8,6 +8,8 @@ import com.epola.ePolaAPI.repository.SellerRepository;
 import com.epola.ePolaAPI.repository.TransportRepository;
 import com.epola.ePolaAPI.resource.SignInRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/ePolaAPI")
+@CrossOrigin("http://localhost:3000")
 public class SignInController {
 
     private final SellerRepository sellerRepository;
@@ -24,7 +27,7 @@ public class SignInController {
     private final TransportRepository transportRepository;
 
     @PostMapping("/signIn")
-    public ResponseEntity signIn(@RequestBody SignInRequest signInRequest){
+    public ResponseEntity<?> signIn(@RequestBody SignInRequest signInRequest){
 
         if(Objects.equals(signInRequest.getRole(), "SELLER")){
             Optional<Seller> sellerInfo = sellerRepository.findSellerByContact_Email(signInRequest.getEmail());
@@ -43,7 +46,7 @@ public class SignInController {
         else if (Objects.equals(signInRequest.getRole(), "TRANSPORT")) {
             Optional<Transport> transportInfo = transportRepository.findByContact_Email(signInRequest.getEmail());
             if (transportInfo.isPresent()){
-                if(transportInfo.get().getPassword().equals(signInRequest.getEmail())){
+                if(transportInfo.get().getPassword().equals(signInRequest.getPassword())){
                     return ResponseEntity.ok("authenticated");
                 }
                 else{

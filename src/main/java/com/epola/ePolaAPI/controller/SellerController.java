@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/ePolaAPI")
+@CrossOrigin("http://localhost:3000")
 public class SellerController {
 
     private final SellerRepository sellerrepository;
@@ -26,7 +27,7 @@ public class SellerController {
         return ResponseEntity.ok(this.sellerrepository.findAll());
     }
 
-    @PostMapping("/seller")
+    @PostMapping("/seller/auth/register")
     public ResponseEntity<Seller> addSeller(@RequestBody SellerRequest sellerRequest){
         Seller seller = new Seller();
         seller.setUserName(sellerRequest.getUserName());
